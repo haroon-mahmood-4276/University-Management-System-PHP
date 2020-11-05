@@ -1,0 +1,32 @@
+<?php
+
+declare(strict_types=1);
+
+$DBServer = "localhost";
+$DBUserName = "root";
+$DBPassword = "";
+$DBName = "Database name";
+
+$HUserID = "";
+$HUserMail = "";
+$HUserName = "";
+$HCurrentSemester = "";
+
+$conn = "";
+
+function CHECKDBCONNECTION(): string
+{
+    $RtnValue = "N";
+
+    global $DBServer, $DBUserName, $DBPassword, $DBName, $conn;
+    $conn = mysqli_connect($DBServer, $DBUserName, $DBPassword, $DBName);
+
+    // Check connection
+    if (!$conn) {
+        $RtnValue = (string) "Connection failed: " . mysqli_connect_error();
+    } else {
+        $RtnValue = "Y";
+    }
+
+    return $RtnValue;
+}
